@@ -17,6 +17,7 @@ ggplot(stack(datb), aes(x = ind, y = values)) +
 
 
 
+
 survey <- data.frame(datb$NA..11, datb$NA..12, datb$NA..13, datb$NA..14, datb$NA..15, datb$NA..16, datb$NA..17, datb$NA..18, datb$NA..19, datb$NA..20) 
 
 
