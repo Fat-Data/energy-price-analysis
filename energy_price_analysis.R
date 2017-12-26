@@ -6,7 +6,7 @@ library(xlsx)
 library(ggplot2)
 library(reshape2)
 
-datb <- read.xlsx("2017_power_prices.xlsx", sheetName="Sheet1")
+datb <- read.xlsx("2017_power_prices2.xlsx", sheetName="Sheet1")
 
 
 boxplot(x = as.list((datb[,2:24]))) 
@@ -40,9 +40,13 @@ ggplot(survey2, aes(x=price..euro.mwh.,y=value, color=variable)) +
   geom_boxplot() + facet_grid(~variable)
 
 # Figure3
-ggplot(survey4, aes(x=price..euro.mwh.,y=value, color=variable)) 
-+ geom_boxplot() + facet_grid(~variable)
+ggplot(survey4, aes(x=price..euro.mwh.,y=value, color=variable)) +
+  geom_boxplot() + facet_grid(~variable)
 
 # Figure4
-ggplot(survey4, aes(x=price..euro.mwh.,y=value, color=variable)) 
-+ geom_boxplot() + facet_grid(variable~.)
+ggplot(survey2, aes(x=price..euro.mwh.,y=value, color=variable)) +
+  geom_point() + geom_smooth() + facet_grid(variable~.)
+
+# Figure5
+ggplot(survey2, aes(x=price..euro.mwh., y=value, color=variable)) +
+  geom_line() + facet_grid(variable~Days)
