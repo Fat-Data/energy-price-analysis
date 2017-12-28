@@ -49,4 +49,8 @@ ggplot(survey2, aes(x=price..euro.mwh.,y=value, color=variable)) +
 
 # Figure5
 ggplot(survey2, aes(x=price..euro.mwh., y=value, color=variable)) +
-  geom_line() + facet_grid(variable~Days)
+  geom_line() + facet_grid(variable~Days, switch="x", margins="Days")
+
+# Figure6
+ggplot(survey2, aes(x=price..euro.mwh., y=value, color=variable)) +
+  geom_line() + facet_grid(variable~Days, switch="x")
