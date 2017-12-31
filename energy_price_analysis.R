@@ -49,8 +49,29 @@ ggplot(survey2, aes(x=price..euro.mwh.,y=value, color=variable)) +
 
 # Figure5
 ggplot(survey2, aes(x=price..euro.mwh., y=value, color=variable)) +
-  geom_line() + facet_grid(variable~Days, switch="x", margins="Days")
+  geom_line() + facet_grid(variable~Days)
 
 # Figure6
 ggplot(survey2, aes(x=price..euro.mwh., y=value, color=variable)) +
-  geom_line() + facet_grid(variable~Days, switch="x")
+  geom_line() + facet_grid(variable~Days, switch="x", margins="Days") +
+  theme(strip.background = element_rect(colour="black", fill="white", size=0.5, linetype="solid"))
+
+# Figure7
+img <- image_graph(800, 450, res = 96)
+
+datalist <- split(survey2, survey2$Month)
+
+out <- lapply(datalist, function(data){
+  p <- ggplot(data, aes(price..euro.mwh., value, size=Days, color=variable)) +
+    #scale_size("value", limits = range(survey2$value)) + 
+    geom_point() + ylim(0, 250) + 
+    #scale_x_log10(limits = range(gapminder$gdpPercap)) + 
+    ggtitle(data$Months) + theme_classic()
+  print(p)
+})
+
+dev.off()
+animation <- image_animate(img, fps = .25)
+print(animation)
+
+
